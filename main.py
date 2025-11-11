@@ -1,11 +1,13 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+g = -9.81
+
 Initial_Height = 0
 theta = 45
 Initial_Velocity = 30
-g = -9.81
 ax = 0
+ay = g
 dt = 0.0001
 
 theta_rad = np.deg2rad(theta)
@@ -25,7 +27,7 @@ pos_x = [0, ]
 
 
 while disp_y >= 0:
-    vy += dt * g
+    vy += dt * ay
     velocity_y.append (vy)
 
     vx += dt * ax
@@ -41,7 +43,7 @@ while disp_y >= 0:
     time.append (t)
 
 
-print (f"The max height was: {max(pos_y)}m \nThe projectile travelled: {max(pos_x)}m")
+print (f"The max height was: {max(pos_y)}m \nThe projectile travelled: {max(pos_x)}m \nThe total time of flight was: {len(time)*dt}s")
 
 plt.figure()
 plt.plot(pos_x, pos_y)
