@@ -48,7 +48,7 @@ def y_vals(x, theta_rad, vx, ay):
 
 pos_y = [y_vals(x, theta_rad, vx, ay) for x in pos_x]
 
-print (f"The max height was: {max_height}m \nThe projectile travelled: {max_range}m \nThe total time of flight was: {flight_time}s")
+print (f"The max height was: {max_height}m \nThe projectile travelled: {max_range}m \nThe total time of flight was: {flight_time}s \n The time to reach the apogee was: {flight_time/2}s")
 
 plt.figure()
 plt.plot(pos_x, pos_y)
