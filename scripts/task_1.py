@@ -1,5 +1,6 @@
 from parameters import *
 
+
 while disp_y >= 0:
     vy += dt * ay
     velocity_y.append (vy)
