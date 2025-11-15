@@ -1,6 +1,20 @@
 from parameters import *
 
 
+target_x = 30
+target_y = 40
+
+def calc_optimal_angle(h, initial_velocity, ay, theta_rad):
+    theta_low = np.arctan((-target_x + np.sqrt((-target_x)**2 -4* -9.81 / (2 * initial_velocity ** 2) * target_y - h + (ay * target_x**2) / (2 * initial_velocity ** 2))))
+    theta_high = np.arctan((-target_x - np.sqrt((-target_x)**2 -4* -9.81 / (2 * initial_velocity ** 2) * target_y - h + (ay * target_x**2) / (2 * initial_velocity ** 2))))
+
+    return theta_low, theta_high
+
+def resolve_vectors(initial_velocity, theta_rad):
+    vy = initial_velocity * np.sin(theta_rad)
+    vx = initial_velocity * np.cos(theta_rad)
+    return vy, vx
+
 def calc_flight_time(vy, ay, h,):
     discriminant = vy**2 - 2 * ay * h
     if discriminant < 0:
@@ -22,6 +36,7 @@ def y_vals(x, h, theta_rad, vx, ay):
     y = h + np.tan(theta_rad) * x + (ay / (2 * vx**2)) * x**2
     return y
 
+vy, vx = resolve_vectors(Initial_Velocity, theta_rad)
 flight_time = calc_flight_time(vy, ay, h)
 max_range = calc_range(vx, flight_time)
 time_to_apogee, max_height = calc_max_height(vy, ay, h)

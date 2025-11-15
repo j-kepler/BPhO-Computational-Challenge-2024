@@ -3,10 +3,8 @@ from parameters import *
 
 while disp_y >= 0:
     vy += dt * ay
-    velocity_y.append (vy)
 
     vx += dt * ax
-    velocity_x.append (vx)
 
     disp_y += vy * dt
     pos_y.append (disp_y)
@@ -18,7 +16,11 @@ while disp_y >= 0:
     time.append (t)
 
 
-print (f"The max height was: {max(pos_y)}m \nThe projectile travelled: {max(pos_x)}m \nThe total time of flight was: {len(time)*dt}s")
+print (
+    f"The max height was: {max(pos_y)}m \n"
+    f"The projectile travelled: {max(pos_x)}m \n"
+    f"The total time of flight was: {len(time)*dt}s"
+)
 
 plt.figure()
 plt.plot(pos_x, pos_y)
