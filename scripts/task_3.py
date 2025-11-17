@@ -5,8 +5,8 @@ target_x = 30
 target_y = 40
 
 def calc_optimal_angle(h, initial_velocity, ay):
-    theta_low = np.arctan((-target_x + np.sqrt((-target_x)**2 -4* ay / (2 * initial_velocity ** 2) * target_y - h + (ay * target_x**2) / (2 * initial_velocity ** 2))))
-    theta_high = np.arctan((-target_x - np.sqrt((-target_x)**2 -4* ay / (2 * initial_velocity ** 2) * target_y - h + (ay * target_x**2) / (2 * initial_velocity ** 2))))
+    theta_low = np.arctan((-target_x + np.sqrt((-target_x) ** 2 -4 * ay / (2 * initial_velocity ** 2) * target_y - h + (ay * target_x ** 2) / (2 * initial_velocity ** 2))))
+    theta_high = np.arctan((-target_x - np.sqrt((-target_x) ** 2 -4 * ay / (2 * initial_velocity ** 2) * target_y - h + (ay * target_x ** 2) / (2 * initial_velocity ** 2))))
 
     return theta_low, theta_high
 
