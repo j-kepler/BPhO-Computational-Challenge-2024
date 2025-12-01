@@ -1,6 +1,9 @@
 from parameters import *
 
 
+vy = v0*np.sin(theta_rad)
+vx = v0*np.cos(theta_rad)
+
 def calc_flight_time(vy, ay, h,):
     discriminant = vy**2 - 2 * ay * h
     if discriminant < 0:

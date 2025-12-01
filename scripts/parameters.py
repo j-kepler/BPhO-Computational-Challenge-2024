@@ -13,8 +13,6 @@ dt = 0.0001
 
 theta_rad = np.deg2rad(theta)
 
-vy = v0*np.sin(theta_rad)
-vx = v0*np.cos(theta_rad)
 disp_y = h
 disp_x = 0
 

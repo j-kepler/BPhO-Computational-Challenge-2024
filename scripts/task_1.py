@@ -1,6 +1,9 @@
 from parameters import *
 
 
+vy = v0*np.sin(theta_rad)
+vx = v0*np.cos(theta_rad)
+
 while disp_y >= 0:
     vy += dt * ay
 

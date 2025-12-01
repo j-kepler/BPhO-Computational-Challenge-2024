@@ -106,21 +106,21 @@ print(
     f"Initial height was: {h} m\n"
     f"Minimum initial velocity was: {min_u} m/s\n"
     f"Low-angle (deg): {np.degrees(theta_min_low)}\n"
-    f"  - max height: {output_min_low[0]} m\n"
-    f"  - range: {output_min_low[1]} m\n"
-    f"  - flight time: {output_min_low[2]} s\n\n"
+    f"  max height: {output_min_low[0]} m\n"
+    f"  range: {output_min_low[1]} m\n"
+    f"  flight time: {output_min_low[2]} s\n\n"
     f"High-angle (deg): {np.degrees(theta_min_high)}\n"
-    f"  - max height: {output_min_high[0]} m\n"
-    f"  - range: {output_min_high[1]} m\n"
-    f"  - flight time: {output_min_high[2]} s"
+    f"  max height: {output_min_high[0]} m\n"
+    f"  range: {output_min_high[1]} m\n"
+    f"  flight time: {output_min_high[2]} s"
 )
 
 plt.figure()
 plt.plot(output1[4], output1[5], label="Low angle solution")
 plt.plot(output2[4], output2[5], label="High angle solution")
-plt.plot(output_min_low[4], output_min_low[5], '--', label=f"Min-u low ({np.degrees(theta_min_low)}°) u={min_u} m/s")
-plt.plot(output_min_high[4], output_min_high[5], '--', label=f"Min-u high ({np.degrees(theta_min_high)}°) u={min_u} m/s")
-plt.scatter([target_x], [target_y], marker="x", s=80, label="Target")
+plt.plot(output_min_low[4], output_min_low[5], '--', label=f"Min-u low ({np.degrees(theta_min_low)} degrees) u={min_u} m/s")
+plt.plot(output_min_high[4], output_min_high[5], '--', label=f"Min-u high ({np.degrees(theta_min_high)} degrees) u={min_u} m/s")
+plt.scatter([target_x], [target_y], marker="x", s=80, label=f"Target ({target_x}, {target_y})")
 plt.ylabel("Displacement in Y")
 plt.title("Drag-free Projectile Motion")
 plt.grid(True)
