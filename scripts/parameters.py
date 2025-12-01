@@ -1,10 +1,11 @@
 import numpy as np
+import sympy as sp
 import matplotlib.pyplot as plt
 
 
 h = 20
 theta = 45
-Initial_Velocity = 30
+v0 = 30
 ax = 0
 ay = -9.81
 t = 0
@@ -12,8 +13,8 @@ dt = 0.0001
 
 theta_rad = np.deg2rad(theta)
 
-vy = Initial_Velocity*np.sin(theta_rad)
-vx = Initial_Velocity*np.cos(theta_rad)
+vy = v0*np.sin(theta_rad)
+vx = v0*np.cos(theta_rad)
 disp_y = h
 disp_x = 0
 
