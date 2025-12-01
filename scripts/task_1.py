@@ -4,6 +4,10 @@ from parameters import *
 vy = v0*np.sin(theta_rad)
 vx = v0*np.cos(theta_rad)
 
+time = [0, ]
+pos_y = [h, ]
+pos_x = [0, ]
+
 while disp_y >= 0:
     vy += dt * ay
 

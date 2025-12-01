@@ -1,8 +1,9 @@
 from parameters import *
 
 
-target_x = 30
-target_y = 40
+target_x = 20
+target_y = 10
+h = 0
 
 def calc_optimal_angle(h, initial_velocity, ay):
     x = target_x
@@ -82,43 +83,28 @@ theta_min_low, theta_min_high = calc_optimal_angle(h, min_u, ay)
 output_min_low = run_for_min_u(min_u, theta_min_low)
 output_min_high = run_for_min_u(min_u, theta_min_high)
 
-print("Low-angle solution:")
-print(
-    f"Initial height was: {h} m\n"
-    f"The max height was: {output1[0]} m\n"
-    f"The projectile travelled: {output1[1]} m\n"
-    f"The total time of flight was: {output1[2]} s\n"
-    f"The time to reach the apogee was: {output1[3]} s\n"
-)
+def calc_bounding_parabola(v0, theta_rad):
+    vy, vx = resolve_vectors(v0, theta_rad)
+    flight_time = calc_flight_time(vy, ay, h)
+    max_range = calc_range(vx, flight_time)
 
-print("High-angle solution:")
-print(
-    f"Initial height was: {h} m\n"
-    f"The max height was: {output2[0]} m\n"
-    f"The projectile travelled: {output2[1]} m\n"
-    f"The total time of flight was: {output2[2]} s\n"
-    f"The time to reach the apogee was: {output2[3]} s"
-)
+    pos_x = np.linspace(0, max_range, num=500)
+    pos_y = (v0 ** 2) / (2 * -ay) - (-ay) / (2 *v0 ** 2) * pos_x ** 2
+    return pos_x, pos_y
 
-print("Minimum initial velocity solution:")
-print(
-    f"Initial height was: {h} m\n"
-    f"Minimum initial velocity was: {min_u} m/s\n"
-    f"Low-angle (deg): {np.degrees(theta_min_low)}\n"
-    f"  max height: {output_min_low[0]} m\n"
-    f"  range: {output_min_low[1]} m\n"
-    f"  flight time: {output_min_low[2]} s\n\n"
-    f"High-angle (deg): {np.degrees(theta_min_high)}\n"
-    f"  max height: {output_min_high[0]} m\n"
-    f"  range: {output_min_high[1]} m\n"
-    f"  flight time: {output_min_high[2]} s"
-)
+bounds = calc_bounding_parabola(v0, theta_rad)
+
+optimal_theta = np.arcsin((1) / (np.sqrt(2+2 * ay * h / v0**2)))
+max_range_solution = run_for_thetas(optimal_theta)
+
 
 plt.figure()
 plt.plot(output1[4], output1[5], label="Low angle solution")
 plt.plot(output2[4], output2[5], label="High angle solution")
-plt.plot(output_min_low[4], output_min_low[5], '--', label=f"Min-u low ({np.degrees(theta_min_low)} degrees) u={min_u} m/s")
-plt.plot(output_min_high[4], output_min_high[5], '--', label=f"Min-u high ({np.degrees(theta_min_high)} degrees) u={min_u} m/s")
+plt.plot(output_min_low[4], output_min_low[5], label=f"Min-u low ({np.degrees(theta_min_low)} degrees) u={min_u} m/s")
+plt.plot(output_min_high[4], output_min_high[5], label=f"Min-u high ({np.degrees(theta_min_high)} degrees) u={min_u} m/s")
+plt.plot(max_range_solution[4], max_range_solution[5], label=f"Max range ({np.degrees(optimal_theta)} degrees) solution")
+plt.plot(bounds[0], bounds[1],  label=f"Bounding parabola")
 plt.scatter([target_x], [target_y], marker="x", s=80, label=f"Target ({target_x}, {target_y})")
 plt.ylabel("Displacement in Y")
 plt.title("Drag-free Projectile Motion")

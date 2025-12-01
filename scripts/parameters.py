@@ -15,7 +15,3 @@ theta_rad = np.deg2rad(theta)
 
 disp_y = h
 disp_x = 0
-
-time = [0, ]
-pos_y = [h, ]
-pos_x = [0, ]
